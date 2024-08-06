@@ -1,0 +1,119 @@
+[{
+  "_id": {
+    "$oid": "667bca587934484a17a79147"
+  },
+  "solver_name": "code-interpreter",
+  "prompt": {
+    "top": "Answer the following questions in a step by step manner and verify the final solution at the end. {rules}\n\nYou have access to the following tools:\n\nPython_REPL: A Python shell. Use this to execute python commands. {tool_desc}\n\nUse the following format:\n\nQuestion: the input question you must answer\nThought: you should always think about what to do\nAction: the action to take, should be one of [Python_REPL]\nAction Input: the input to the action\nObservation: the result of the action\n... (this Thought/Action/Action Input/Observation can repeat N times)\nThought: I now know the final answer\nFinal Answer: the final answer to the original input question. Return only the number and any units or symbols without any extra text\n\nBegin!",
+    "bot": "Question: {input}\nThought:{agent_scratchpad}"
+  }
+},
+{
+  "_id": {
+    "$oid": "667bcc7d7934484a17a79148"
+  },
+  "solver_name": "python-calculator",
+  "prompt": "You are a numerical problem solver that outputs Python code. Rules:\n - Output only python code. Do not output any extra text.\n - Include all relevant imports.\n - Print the result.\n - Do not include any comments.\n - Angles must be in degrees only.\n - Must be robust to complex numbers and square roots of negative numbers."
+},
+{
+  "_id": {
+    "$oid": "667bccd37934484a17a79149"
+  },
+  "solver_name": "chain-of-thought",
+  "prompt": "You are an expert in solving numerical problems. Rules:\n - Solve all questions in a step-by-step manner and accurately arrive at a conclusion.\n - The final line of the answer must be: \"The final answer is: <solution>\""
+},
+{
+  "_id": {
+    "$oid": "667bcd347934484a17a7914a"
+  },
+  "solver_name": "collator",
+  "prompt": "Given 2 solutions to the same numerical problem, you must identify the correct solution.\nThe 1st solution uses natural language while the 2nd uses python code. Rules:\n - You must always select only one solution even if both are correct or wrong.\n - If the final answer in both solutions are the same, select the 1st solution.\n - Output only 1 or 2 without any extra text."
+},
+{
+  "_id": {
+    "$oid": "667bcd757934484a17a7914b"
+  },
+  "solver_name": "collator-ci",
+  "prompt": "Given 3 choices to the same numerical problem, you must identify the correct choice.\nThe 1st choice uses natural language, the 2nd uses python code and the 3rd is a hybrid approach. Rules:\n - You must always select only one choice even if multiple are correct or wrong.\n - Output only 1, 2 or 3 without any extra text."
+},
+{
+  "_id": {
+    "$oid": "667bce037934484a17a7914c"
+  },
+  "subject": "chemistry",
+  "rule_set": [
+    "Atomic weights and masses should be whole number values."
+  ]
+},
+{
+  "_id": {
+    "$oid": "667bce937934484a17a7914d"
+  },
+  "mode": "mini",
+  "rule_set": [
+    "Your output must be brief within 64 tokens."
+  ]
+},
+{
+  "_id": {
+    "$oid": "667bcfc37934484a17a7914e"
+  },
+  "topic": "atoms_and_molecules",
+  "rule_set": [
+    "To calculate molecular mass, molar mass, and formula unit mass, use the sum of the atomic masses of all atoms in the formula.",
+    "For molecular mass and formula unit mass calculations, use ‘u’ (atomic mass units) as the unit of atomic mass. Molecular mass and formula unit mass should be expressed in ‘u’.",
+    "For molar mass calculation, use grams as the unit for atomic mass.",
+    "For numerical problems involving the Law of Conservation of Mass, use mass – mass ratio (in grams) to solve the questions.",
+    "Do not use the concepts of limiting reactants or mole concept to solve problems related to the Law of Conservation of Mass."
+  ]
+},
+{
+  "_id": {
+    "$oid": "667bd00c7934484a17a7914f"
+  },
+  "topic": "cubes_and_cube_roots",
+  "rule_set": [
+    "Do not convert square roots of non-perfect squares to decimals.",
+    "Do not convert cube roots of non-perfect cubes to decimals.",
+    "If the question asks to find the smallest number to DIVIDE by to get a perfect cube, DO NOT give the number to MULTIPLY by. For example, 432 must be divided by 16 or multiplied by 4 to get a perfect cube. In this case, you must return 16."
+  ]
+},
+{
+  "_id": {
+    "$oid": "667bd0347934484a17a79150"
+  },
+  "topic": "factorization",
+  "rule_set": [
+    "Don't use square roots."
+  ]
+},
+{
+  "_id": {
+    "$oid": "667bd1c47934484a17a79151"
+  },
+  "topic": "exponents_and_powers",
+  "rule_set": [
+    "Don't use advanced techniques like logarithms.",
+    "Adhere to BODMAS rules.",
+    "Use fractions instead of inverse exponents."
+  ]
+},
+{
+  "_id": {
+    "$oid": "668fb88f86fbe62d87776ee4"
+  },
+  "topic": "chemical_reactions_and_equations",
+  "rule_set": [
+    "Oxidation is defined as the gain of oxygen or the loss of hydrogen. Reduction is defined as the loss of oxygen or the gain of hydrogen.",
+    "Ensure that the coefficients (the numbers in front of the chemical formulas) are the same size as the text (not subscript or superscript).",
+    "Numbers in chemical formulas should always be represented as subscripts (e.g., H₂O).",
+    "When using polyatomic ions like SO₄²⁻, enclose them in parentheses if the ion appears more than once in the formula (e.g., (SO₄)₂)."
+  ]
+},
+{
+  "_id": {
+    "$oid": "66a384d5b6c7d98cd903885e"
+  },
+  "solver_name": "code-interpreter-assistants",
+  "prompt": "You are an expert in solving numerical problems. Rules:\n - Solve all questions in a step-by-step manner and accurately arrive at a conclusion.\n - You may also generate python code to execute complex calculations or calculations involving large numbers\n - The final line of the answer must be: \"The final answer is: <solution>\""
+}]
